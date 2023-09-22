@@ -11,6 +11,14 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class GuessColor extends HttpServlet {
         private static final long serialVersionUID = 1L;
+        
+        private String initColor;
+        
+        @Override
+        public void init() throws ServletException {
+        	// S'ha configurat un paràmetre que conté el color a endevinar:
+            initColor = getServletConfig().getInitParameter("color");
+        }
 
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,9 +43,6 @@ public class GuessColor extends HttpServlet {
 
                         // L'usuari ha seleccionat un color i ho ha enviat.
                         String paramColor = request.getParameter("color");
-
-                        // S'ha configurat un paràmetre que conté el color a endevinar:
-                        String initColor = getServletConfig().getInitParameter("color");
 
                         if (initColor.toLowerCase().equals(paramColor.toLowerCase())) {
                                 result = "Congratulations! You guess the color";
