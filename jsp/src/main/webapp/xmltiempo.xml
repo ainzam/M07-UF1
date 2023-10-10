@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root id="08">
+	<elaborado>2017-12-12T14:01:10</elaborado>
+	<validez_ini>2017-12-12T00:00:00</validez_ini>
+	<validez_fin>2017-12-13T00:00:00</validez_fin>
+	<actualizacion />
+	<prediccion>
+		<txt_prediccion>
+			<p>Cielo con intervalos nubosos. Por la tarde, precipitaciones en
+				general débiles. La cota de nieve se situará entre 800 y 1000 m.
+				Temperaturas en descenso. Heladas en el interior. Viento variable
+				flojo.</p>
+		</txt_prediccion>
+		<ciudad>
+			<id>6908298</id>
+			<nombre>Vic</nombre>
+			<minima>-3</minima>
+			<maxima>8</maxima>
+		</ciudad>
+		<ciudad>
+			<id>6908121</id>
+			<nombre>Mataró</nombre>
+			<minima>5</minima>
+			<maxima>13</maxima>
+		</ciudad>
+		<ciudad>
+			<id>6908102</id>
+			<nombre>Igualada</nombre>
+			<minima>-1</minima>
+			<maxima>9</maxima>
+		</ciudad>
+		<ciudad>
+			<id>6908307</id>
+			<nombre>Vilanova i la Geltrú</nombre>
+			<minima>4</minima>
+			<maxima>13</maxima>
+		</ciudad>
+		<ciudad>
+			<id>6908113</id>
+			<nombre>Manresa</nombre>
+			<minima>-3</minima>
+			<maxima>8</maxima>
+		</ciudad>
+		<ciudad>
+			<id>6908187</id>
+			<nombre>Sabadell</nombre>
+			<minima>0</minima>
+			<maxima>10</maxima>
+		</ciudad>
+		<ciudad>
+			<id>6908019</id>
+			<nombre>Barcelona</nombre>
+			<minima>7</minima>
+			<maxima>12</maxima>
+		</ciudad>
+	</prediccion>
+</root>
