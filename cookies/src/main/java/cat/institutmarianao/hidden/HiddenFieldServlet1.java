@@ -38,7 +38,7 @@ public class HiddenFieldServlet1 extends HttpServlet {
                         String username = request.getParameter("username");
                         out.print("Welcome " + username);
 
-                        out.print("<form action='hiddenFieldServlet2'>");
+                        out.print("<form action='HiddenFieldServlet2'>");
                         out.print("<input type='hidden' name='hiddenName' value='" + username + "'>");
                         out.print("<input type='submit' value='go'>");
                         out.print("</form>");

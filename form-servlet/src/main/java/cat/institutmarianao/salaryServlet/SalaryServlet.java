@@ -1,4 +1,3 @@
-
 package cat.institutmarianao.salaryServlet;
 
 import java.io.IOException;
