@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Promo2/src/main/java"/>
+	<classpathentry kind="src" path="cookies/src/main/java"/>
+	<classpathentry kind="src" path="form-servlet/src/main/java"/>
+	<classpathentry kind="src" path="hello-world-servlet/src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17"/>
+	<classpathentry kind="src" path="hello-world-xml-servlet/src/main/java"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
