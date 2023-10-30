@@ -42,7 +42,7 @@ public class Repository {
 	static {
 		// Init repository
 		cyclesModules = new HashMap<>(3);
-
+		
 		cyclesModules.put("ASIX", Arrays.asList(ASIX));
 		cyclesModules.put("DAM", Arrays.asList(DAM));
 		cyclesModules.put("DAW", Arrays.asList(DAW));
