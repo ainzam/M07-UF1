@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,19 +16,17 @@
 </head>
 <body>
 
-	<div class="jumbotron text-center">
+	<div class="jumbotron container">
 		<h1>Students</h1>
 		<p>An Institut Marianao application</p>
 	</div>
 
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-4">
-				<h3>Column 1</h3>
-				<p></p>
-				<p></p>
-			</div>
-		</div>
+		<ul class="list-inline">
+			<c:forEach var="final" items="">
+				<c:out value="${var}" />
+			</c:forEach>
+		</ul>
 	</div>
 
 </body>
