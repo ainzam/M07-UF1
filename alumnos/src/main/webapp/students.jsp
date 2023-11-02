@@ -23,15 +23,15 @@
 	<div class="container">
 		<ul class="list-inline">
 			<c:forEach var="module" items="${cycles}">
-				<li><a href="register?cycle=${module}">${module}</a></li>
+				<li><a href="register?cycle=${module}"><span
+						class="glyphicon glyphicon-plus"></span>New ${module} register </a></li>
 			</c:forEach>
 		</ul>
 	</div>
 	<div class="container">
 		<div class="row">
-			<!-- Contenedor de estudiantes registrados -->
 			<div class="col-sm-12">
-				<h2>Alumnos Registrados</h2>
+				<h2>Students</h2>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -52,7 +52,12 @@
 								<td>${student.surname}</td>
 								<td>${student.email}</td>
 								<td>${student.cycle}</td>
-								<td>${student.modules}</td>
+								<td>
+									<ul>
+										<c:forEach var="module" items="${student.modules}">
+											<li>${module}</li>
+										</c:forEach>
+									</ul>
 								<td><a href="remove?dni=${student.dni}"
 									class="btn btn-danger">Eliminar</a></td>
 							</tr>

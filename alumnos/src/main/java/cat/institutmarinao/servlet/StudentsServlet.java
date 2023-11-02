@@ -1,4 +1,7 @@
 package cat.institutmarinao.servlet;
+import java.io.IOException;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,13 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import cat.institutmarinao.alumnos.Student;
 import cat.institutmarinao.repository.Repository;
 
-import java.io.IOException;
-import java.util.List;
-
 @WebServlet(name = "students", urlPatterns = { "/students" })
 public class StudentsServlet extends HttpServlet {
+    
     private static final long serialVersionUID = 1L;
-    @EJB
+	@EJB
     private Repository repository;
 
     @Override

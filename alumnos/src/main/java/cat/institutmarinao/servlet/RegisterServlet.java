@@ -1,17 +1,18 @@
 package cat.institutmarinao.servlet;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import cat.institutmarinao.repository.Repository;
 
-import java.io.IOException;
-import java.util.List;
 import cat.institutmarinao.alumnos.Student;
+import cat.institutmarinao.repository.Repository;
 
 @WebServlet(name = "register", urlPatterns = { "/register" })
 public class RegisterServlet extends HttpServlet {
