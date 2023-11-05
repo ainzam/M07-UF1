@@ -1,12 +1,33 @@
 package cat.institutmarinao.alumnos;
 
+import javax.ejb.Local;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+@Local
 public class Student {
-	private String dni;
-	private String name;
-	private String surname;
-	private String email;
-	private String cycle;
-	private String[] modules;
+    @Pattern(regexp = "\\d{7,8}[0-9A-Za-z]", message = "Invalid DNI format")
+    @NotBlank(message = "DNI is required")
+    private String dni;
+
+    @NotBlank(message = "Name is required")
+    @Size(max = 200, message = "Name must be 200 characters or less")
+    private String name;
+
+    @NotBlank(message = "Surname is required")
+    @Size(max = 200, message = "Surname must be 200 characters or less")
+    private String surname;
+
+    @Email(message = "Invalid email address")
+    private String email;
+
+    @NotBlank(message = "Cycle is required")
+    private String cycle;
+
+    @Size(min = 1, message = "At least one module is required")
+    private String[] modules;
 
 	public Student() {
 	}

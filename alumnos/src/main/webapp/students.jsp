@@ -7,24 +7,29 @@
 <title>Students</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-	<div class="jumbotron container">
+	<div class="container mt-4 p-5 bg-primary text-white rounded">
 		<h1>Students</h1>
 		<p>An Institut Marianao application</p>
 	</div>
 
-	<div class="container">
-		<ul class="list-inline">
+	<div class="container mt-4">
+		<ul class="list-group list-group-horizontal">
 			<c:forEach var="module" items="${cycles}">
-				<li><a href="register?cycle=${module}"><span
-						class="glyphicon glyphicon-plus"></span>New ${module} register </a></li>
+				<li class="list-group-item"><a style="text-decoration:none;" href="register?cycle=${module}"><i
+						class="bi bi-plus-square"></i> New ${module} register </a></li>
 			</c:forEach>
 		</ul>
 	</div>
@@ -59,7 +64,8 @@
 										</c:forEach>
 									</ul>
 								<td><a href="remove?dni=${student.dni}"
-									class="btn btn-danger">Eliminar</a></td>
+									class="btn btn-danger" data-toggle="modal"
+									data-target="#deleteConfirmationModal">Eliminar</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -67,6 +73,40 @@
 			</div>
 		</div>
 	</div>
+	<!-- Modal de confirmación de eliminación -->
+	<div class="modal fade" id="deleteConfirmationModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteConfirmationModalLabel">Confirmar
+						Eliminación</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						¿Seguro que deseas eliminar al estudiante con DNI: <span
+							id="studentDNI">${student.dni}</span>?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cancelar</button>
+					<a id="deleteStudentLink" class="btn btn-danger">Eliminar</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!-- Script para capturar el DNI del estudiante y configurar el enlace de eliminación en el modal -->
+	<script>
+		$(document).ready(function() {
+			$('.btn-danger').click(function() {
+				var dni = $(this).closest('tr').find('td:first').text();
+				$('#studentDNI').text(dni);
+				var deleteLink = 'remove?dni=' + dni;
+				$('#deleteStudentLink').attr('href', deleteLink);
+			});
+		});
+	</script>
 </body>
 </html>
