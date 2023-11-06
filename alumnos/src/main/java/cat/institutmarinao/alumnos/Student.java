@@ -8,26 +8,26 @@ import javax.validation.constraints.Size;
 
 @Local
 public class Student {
-    @Pattern(regexp = "\\d{7,8}[0-9A-Za-z]", message = "Invalid DNI format")
-    @NotBlank(message = "DNI is required")
-    private String dni;
+	@Pattern(regexp = "(?i)^(\\d{8})([A-Z])$", message = "Invalid DNI format")
+	@NotBlank(message = "DNI is required")
+	private String dni;
 
-    @NotBlank(message = "Name is required")
-    @Size(max = 200, message = "Name must be 200 characters or less")
-    private String name;
+	@NotBlank(message = "Name is required")
+	@Size(max = 200, message = "Name must be 200 characters or less")
+	private String name;
 
-    @NotBlank(message = "Surname is required")
-    @Size(max = 200, message = "Surname must be 200 characters or less")
-    private String surname;
+	@NotBlank(message = "Surname is required")
+	@Size(max = 200, message = "Surname must be 200 characters or less")
+	private String surname;
 
-    @Email(message = "Invalid email address")
-    private String email;
+	@Email(message = "Invalid email address")
+	private String email;
 
-    @NotBlank(message = "Cycle is required")
-    private String cycle;
+	@NotBlank(message = "Cycle is required")
+	private String cycle;
 
-    @Size(min = 1, message = "At least one module is required")
-    private String[] modules;
+	@Size(min = 1, message = "At least one module is required")
+	private String[] modules;
 
 	public Student() {
 	}
