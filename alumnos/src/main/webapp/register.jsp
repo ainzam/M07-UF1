@@ -5,36 +5,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Register</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Students</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-	<div class="jumbotron container">
-		<h1>Students</h1>
-		<p>An Institut Marianao application</p>
-	</div>
+    <div class="container mt-4 p-5 bg-primary text-white rounded">
+        <h1>Students</h1>
+        <p>An Institut Marianao application</p>
+    </div>
 	<div class="container">
 		<h1>New ${cycle} register</h1>
 		<form action="register" method="POST">
 			<div class="row">
 				<div class="col-sm-6">
 					<div
-						class="form-group ${errorsMap['dni'] != null ? 'has-error' : ''}">
+						class="mb-3 ${errorsMap['dni'] != null ? 'has-error' : ''}">
 						<label for="dni">DNI:</label> <input type="text"
-							class="form-control" id="dni" name="dni" value="${dni}" >
+							class="form-control" id="dni" name="dni" value="${dni}">
 						<c:if test="${errorsMap['dni'] != null}">
 							<span class="help-block">${errorsMap['dni']}</span>
 						</c:if>
 					</div>
 					<div
-						class="form-group ${errorsMap['name'] != null ? 'has-error' : ''}">
+						class="mb-3 ${errorsMap['name'] != null ? 'has-error' : ''}">
 						<label for="name">Name:</label> <input type="text"
 							class="form-control" id="name" name="name" value="${name}">
 						<c:if test="${errorsMap['name'] != null}">
@@ -42,16 +41,16 @@
 						</c:if>
 					</div>
 					<div
-						class="form-group ${errorsMap['surname'] != null ? 'has-error' : ''}">
+						class="mb-3 ${errorsMap['surname'] != null ? 'has-error' : ''}">
 						<label for="surname">Surname:</label> <input type="text"
 							class="form-control" id="surname" name="surname"
-							value="${surname}" >
+							value="${surname}">
 						<c:if test="${errorsMap['surname'] != null}">
 							<span class="help-block">${errorsMap['surname']}</span>
 						</c:if>
 					</div>
 					<div
-						class="form-group ${errorsMap['email'] != null ? 'has-error' : ''}">
+						class="mb-3 ${errorsMap['email'] != null ? 'has-error' : ''}">
 						<label for="email">Email:</label> <input type="text"
 							class="form-control" id="email" name="email" value="${email}">
 						<c:if test="${errorsMap['email'] != null}">
@@ -59,7 +58,7 @@
 						</c:if>
 					</div>
 
-					<div class="form-group">
+					<div class="mb-3">
 						<label for="cycle">Cycle:</label> <input type="text"
 							class="form-control" id="cycle" name="cycle" value="${cycle}"
 							readonly>
@@ -67,7 +66,7 @@
 				</div>
 				<div class="col-sm-6">
 					<div
-						class="form-group ${errorsMap['modules'] != null ? 'has-error' : ''}">
+						class="mb-3 ${errorsMap['modules'] != null ? 'has-error' : ''}">
 						<label>Modules:</label>
 						<c:forEach var="module" items="${modules}">
 							<div class="checkbox">
