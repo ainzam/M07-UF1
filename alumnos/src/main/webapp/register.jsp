@@ -25,36 +25,36 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div
-						class="mb-3 ${errorsMap['dni'] != null ? 'has-error' : ''}">
+						class="mb-3">
 						<label for="dni">DNI:</label> <input type="text"
-							class="form-control" id="dni" name="dni" value="${dni}">
+							class="form-control ${errorsMap['dni'] != null ? 'is-invalid' : ''}" id="dni" name="dni" value="${dni}">
 						<c:if test="${errorsMap['dni'] != null}">
-							<span class="help-block">${errorsMap['dni']}</span>
+							<span class="invalid-feedback">${errorsMap['dni']}</span>
 						</c:if>
 					</div>
 					<div
-						class="mb-3 ${errorsMap['name'] != null ? 'has-error' : ''}">
+						class="mb-3 ">
 						<label for="name">Name:</label> <input type="text"
-							class="form-control" id="name" name="name" value="${name}">
+							class="form-control ${errorsMap['name'] != null ? 'is-invalid' : ''}" id="name" name="name" value="${name}">
 						<c:if test="${errorsMap['name'] != null}">
-							<span class="help-block">${errorsMap['name']}</span>
+							<span class="invalid-feedback">${errorsMap['name']}</span>
 						</c:if>
 					</div>
 					<div
-						class="mb-3 ${errorsMap['surname'] != null ? 'has-error' : ''}">
+						class="mb-3 ">
 						<label for="surname">Surname:</label> <input type="text"
-							class="form-control" id="surname" name="surname"
+							class="form-control ${errorsMap['surname'] != null ? 'is-invalid' : ''}" id="surname" name="surname"
 							value="${surname}">
 						<c:if test="${errorsMap['surname'] != null}">
-							<span class="help-block">${errorsMap['surname']}</span>
+							<span class="invalid-feedback">${errorsMap['surname']}</span>
 						</c:if>
 					</div>
 					<div
-						class="mb-3 ${errorsMap['email'] != null ? 'has-error' : ''}">
+						class="mb-3 ">
 						<label for="email">Email:</label> <input type="text"
-							class="form-control" id="email" name="email" value="${email}">
+							class="form-control ${errorsMap['email'] != null ? 'is-invalid' : ''}" id="email" name="email" value="${email}">
 						<c:if test="${errorsMap['email'] != null}">
-							<span class="help-block">${errorsMap['email']}</span>
+							<span class="invalid-feedback">${errorsMap['email']}</span>
 						</c:if>
 					</div>
 
@@ -66,13 +66,13 @@
 				</div>
 				<div class="col-sm-6">
 					<div
-						class="mb-3 ${errorsMap['modules'] != null ? 'has-error' : ''}">
+						class="mb-3 ${errorsMap['modules'] != null ? 'is-invalid' : ''}">
 						<label>Modules:</label>
 						<c:forEach var="module" items="${modules}">
 							<div class="checkbox">
 								<label> <c:if
 										test="${selectedModules != null && selectedModules.contains(module)}">
-										<input type="checkbox" name="modules" value="${module}"
+										<input type="checkbox" class="form-check-input" name="modules" value="${module}"
 											checked>
 									</c:if> <c:if
 										test="${selectedModules == null || !selectedModules.contains(module)}">
@@ -82,13 +82,13 @@
 							</div>
 						</c:forEach>
 						<c:if test="${errorsMap['modules'] != null}">
-							<span class="help-block">${errorsMap['modules']}</span>
+							<span class="" style="color: red;">${errorsMap['modules']}</span>
 						</c:if>
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
-				<a class="btn btn-default" href="StudentsServlet">Cancel</a>
+				<a class="btn btn-default" href="students">Cancel</a>
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
 		</form>

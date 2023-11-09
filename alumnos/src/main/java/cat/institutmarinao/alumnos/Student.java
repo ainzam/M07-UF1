@@ -8,8 +8,8 @@ import javax.validation.constraints.Size;
 
 @Local
 public class Student {
-	@Pattern(regexp = "(?i)^(\\d{8})([A-Z])$", message = "Invalid DNI format")
 	@NotBlank(message = "DNI is required")
+	@Pattern(regexp = "(?i)^(\\d{8})([A-Z])$", message = "Invalid DNI format")
 	private String dni;
 
 	@NotBlank(message = "Name is required")
