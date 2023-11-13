@@ -56,11 +56,11 @@
                                         </c:forEach>
                                     </ul>
                                 <td>
-                                    <!-- Botón para abrir el modal de confirmación de eliminación -->
+                                
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal-${student.dni}">Eliminar</button>
                                 </td>
                             </tr>
-                            <!-- Modal de confirmación de eliminación para cada estudiante -->
+                            
                             <div class="modal fade" id="deleteConfirmationModal-${student.dni}" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel-${student.dni}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">

@@ -46,7 +46,7 @@ public class RepositoryImpl implements Repository {
 			"M13 - Formació en centres de treball" };
 
 	static {
-		// Init repository
+
 		cyclesModules = new HashMap<>(3);
 
 		cyclesModules.put("ASIX", Arrays.asList(ASIX));

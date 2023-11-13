@@ -19,7 +19,7 @@ public class GuessColor extends HttpServlet {
         	// S'ha configurat un paràmetre que conté el color a endevinar:
             initColor = getServletConfig().getInitParameter("color");
         }
-
+        
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
                         throws ServletException, IOException {
