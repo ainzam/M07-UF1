@@ -6,27 +6,26 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import cat.institutmarianao.domain.Medicament;
+import cat.institutmarianao.domain.repository.MedicamentRepository;
 
 @Controller
 public class MedicamentController {
 
+    @Autowired
+    private MedicamentRepository medicamentRepository;
+
     @RequestMapping(value = "/medicaments", method = RequestMethod.GET)
     public ModelAndView handleRequest(HttpServletRequest request,
-            HttpServletResponse response)
+                                      HttpServletResponse response)
             throws ServletException, IOException {
         ModelAndView modelview = new ModelAndView("medicaments");
-        Medicament ibuprofe = new Medicament("M010", "Ibuprofé", 2);
-        ibuprofe.setDescription("Ibuprofé de 600mg");
-        ibuprofe.setCategory("Anti−inflamatori");
-        ibuprofe.setProducer("Cinfa");
-        ibuprofe.setStockQuantity(214);
-        modelview.getModelMap().addAttribute("medicament", ibuprofe);
+        modelview.getModelMap().addAttribute("medicaments", medicamentRepository.getAllMedicaments());
         return modelview;
     }
 }
