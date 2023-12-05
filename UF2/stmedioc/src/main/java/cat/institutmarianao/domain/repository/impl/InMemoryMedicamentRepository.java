@@ -1,7 +1,10 @@
 package cat.institutmarianao.domain.repository.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -37,6 +40,7 @@ public class InMemoryMedicamentRepository implements MedicamentRepository {
 		listOfMedicaments.add(acacetilsalicilico);
 	}
 
+	@Override
 	public Medicament getMedicamentById(String medicamentId) {
 		Medicament medicamentById = null;
 
@@ -56,7 +60,57 @@ public class InMemoryMedicamentRepository implements MedicamentRepository {
 	}
 
 	@Override
+	public List<Medicament> getMedicamentsByCategory(String category) {
+		List<Medicament> medicamentsByCategory = new ArrayList<Medicament>();
+		for (Medicament medicament : listOfMedicaments) {
+			if (category.equalsIgnoreCase(medicament.getCategory())) {
+				medicamentsByCategory.add(medicament);
+			}
+		}
+		return medicamentsByCategory;
+	}
+
+	@Override
+	public Set<Medicament> getMedicamentsByFilter(Map<String, List<String>> filterParams) {
+		Set<Medicament> medicamentsByProducer = new HashSet<>();
+		Set<Medicament> medicamentsInStockRange = new HashSet<>();
+		Set<String> criterias = filterParams.keySet();
+		long minStock = 0;
+		long maxStock = 0;
+
+		if (criterias.contains("producer")) {
+			for (String producerName : filterParams.get("producer")) {
+				for (Medicament medicament : listOfMedicaments) {
+					if (producerName.equalsIgnoreCase(medicament.getProducer())) {
+						medicamentsByProducer.add(medicament);
+					}
+				}
+			}
+		}
+
+		if (criterias.contains("estoc")) {
+			minStock = Long.parseLong(filterParams.get("estoc").get(0));
+			maxStock = Long.parseLong(filterParams.get("estoc").get(1));
+
+			for (Medicament medicament : listOfMedicaments) {
+				if ((medicament.getStockQuantity() >= minStock) && (medicament.getStockQuantity() <= maxStock)) {
+					medicamentsInStockRange.add(medicament);
+				}
+			}
+		}
+
+		medicamentsInStockRange.retainAll(medicamentsByProducer);
+		return medicamentsInStockRange;
+	}
+
+	@Override
 	public List<Medicament> getAllMedicaments() {
 		return listOfMedicaments;
 	}
+
+	@Override
+	public void addMedicament(Medicament medicament) {
+		listOfMedicaments.add(medicament);
+	}
+
 }

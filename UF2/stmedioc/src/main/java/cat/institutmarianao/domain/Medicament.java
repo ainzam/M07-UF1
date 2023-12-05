@@ -14,6 +14,10 @@ public class Medicament {
 		return medicamentId;
 	}
 
+	public Medicament () {
+		super();
+	}
+	
 	public void setMedicamentId(String medicamentId) {
 		this.medicamentId = medicamentId;
 	}
@@ -27,10 +31,6 @@ public class Medicament {
 	}
 
 	private boolean active;
-
-	public Medicament() {
-		super();
-	}
 
 	public Medicament(String medicamentId, String name, double price) {
 		this.medicamentId = medicamentId;
