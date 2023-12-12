@@ -12,6 +12,9 @@
 <body>
     <section>
         <div class="jumbotron">
+	         <div class="pull-right" style="padding-right:50px">
+	 			<a href="?language=ca" >Català</a>|<a href="?language=en" >Anglès</a>
+	 		</div>
 			<a href="<c:url value="/j_spring_security_logout" />"
 				class="btn btndanger btn-mini pull-right">desconnectar</a>
 			<div class="container">
@@ -25,31 +28,31 @@
             <fieldset>
                 <legend>Afegir medicament</legend>
                 <div class="form-group">
-                    <label class="control-label col-lg-2 col-lg-2" for="medicamentId">Codi</label>
+                    <label class="control-label col-lg-2 col-lg-2" for="medicamentId"><spring:message code= "addMedicament.form.medicamentId.label"/></label>
                     <div class="col-lg-10">
                         <form:input id="medicamentId" path="medicamentId" type="text" class="form:input-large"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-lg-2 col-lg-2" for="name">Nom</label>
+                    <label class="control-label col-lg-2 col-lg-2" for="name"><spring:message code= "addMedicament.form.name.label"/></label>
                     <div class="col-lg-10">
                         <form:input id="name" path="name" type="text" class="form:input-large"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-lg-2 col-lg-2" for="price">Preu</label>
+                    <label class="control-label col-lg-2 col-lg-2" for="price"><spring:message code= "addMedicament.form.price.label"/></label>
                     <div class="col-lg-10">
                         <form:input id="price" path="price" type="text" class="form:input-large"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-lg-2 col-lg-2" for="producer">Laboratori</label>
+                    <label class="control-label col-lg-2 col-lg-2" for="producer"><spring:message code= "addMedicament.form.producer.label"/></label>
                     <div class="col-lg-10">
                         <form:input id="producer" path="producer" type="text" class="form:input-large"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-lg-2 col-lg-2" for="category">Categoria</label>
+                    <label class="control-label col-lg-2 col-lg-2" for="category"><spring:message code= "addMedicament.form.category.label"/></label>
                     <div class="col-lg-10">
                         <form:input id="category" path="category" type="text" class="form:input-large"/>
                     </div>
