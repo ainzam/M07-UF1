@@ -10,9 +10,26 @@
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 <!-- TODO add configuration to find Spring elements, such as Controllers, Services, Repositories, etc -->
-
+	<context:component-scan
+		base-package="cat.institutmarianao.controller cat.institutmarianao.repository cat.institutmarianao.service" />
+		
 	<security:http auto-config="true" use-expressions="true">
 		<!-- TODO Configure security context -->
+		<security:csrf disabled="true" />
+
+		<security:intercept-url
+			pattern="/users" access="hasRole('USER_ROLE')" />
+		<security:intercept-url
+			pattern="/admin" access="hasRole('ADMIN_ROLE')" />
+		<security:intercept-url pattern="/check"
+			access="hasRole('ADMIN_ROLE,USER_ROLE')" />
+
+		<security:form-login login-page="/login"
+			authentication-failure-url="/loginfailed" />
+		<security:logout logout-success-url="/check"
+			invalidate-session="true" />
+		<security:access-denied-handler
+			error-page="/login" />
 	</security:http>
 
 	<security:authentication-manager>
