@@ -11,12 +11,20 @@
                            http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 
-	<!-- TODO add resource mapping for images here -->
-	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
+	<!-- TODO add resource mapping for images here 
+	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" / -->
 
 	<!-- TODO add configuration to find Spring elements, such as Controllers, 
 		Services, Repositories, etc -->
+	<mvc:annotation-driven
+		enable-matrix-variables="true">
+		<mvc:path-matching path-helper="pathHelper" />
+	</mvc:annotation-driven>
 
+	<bean id="pathHelper"
+		class="org.springframework.web.util.UrlPathHelper">
+		<property name="removeSemicolonContent" value="false" />
+	</bean>
 	<context:component-scan
 		base-package="cat.institutmarianao.controller cat.institutmarianao.repository cat.institutmarianao.service" />
 
@@ -38,7 +46,7 @@
 	
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-		<property name="defaultLocale" value="ca" />
+		<property name="defaultLocale" value="es" />
 	</bean>
 
 	<mvc:interceptors>

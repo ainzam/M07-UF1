@@ -10,6 +10,10 @@
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 <!-- TODO add configuration to find Spring elements, such as Controllers, Services, Repositories, etc -->
+	<mvc:annotation-driven
+		enable-matrix-variables="true">
+	</mvc:annotation-driven>
+	
 	<context:component-scan
 		base-package="cat.institutmarianao.controller cat.institutmarianao.repository cat.institutmarianao.service" />
 		
