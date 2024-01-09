@@ -20,7 +20,9 @@
 	<security:http auto-config="true" use-expressions="true">
 		<!-- TODO Configure security context -->
 		<security:csrf disabled="true" />
-
+		
+		<security:intercept-url pattern="/**"
+			access="permitAll" />
 		<security:intercept-url
 			pattern="/users" access="hasRole('USER_ROLE')" />
 		<security:intercept-url

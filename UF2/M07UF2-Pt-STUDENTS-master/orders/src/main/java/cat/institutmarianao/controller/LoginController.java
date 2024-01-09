@@ -20,6 +20,7 @@ public class LoginController {
 		}
 		return "redirect:/users/orders";
 	}
+	
 	@GetMapping(value = "/login")
 	public String login() {
 		return "login";
