@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -16,6 +17,7 @@ import cat.institutmarianao.domain.Order;
 import cat.institutmarianao.domain.User;
 
 //TODO - Configure Spring element and add mappings
+@Controller
 public class OrderController {
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -30,10 +32,16 @@ public class OrderController {
 		order.setClient(client);
 		return order;
 	}
-
+	
 	public ModelAndView orders() {
 		// TODO - get authenticated user here
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User client = (User) userDetailsService.loadUserByUsername(username);
+		
 		// TODO - get user orders
+		
+		
 		// TODO - Prepare the orders.jsp view and send user orders and Order.STATES as
 		// parameter
 		return null;
