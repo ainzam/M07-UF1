@@ -21,14 +21,11 @@
 		<!-- TODO Configure security context -->
 		<security:csrf disabled="true" />
 		
-		<security:intercept-url pattern="/*"
-			access="permitAll" />
-		<security:intercept-url
-			pattern="/users" access="hasRole('USER_ROLE')" />
-		<security:intercept-url
-			pattern="/admin" access="hasRole('ADMIN_ROLE')" />
-		<security:intercept-url pattern="/check"
-			access="hasRole('ADMIN_ROLE,USER_ROLE')" />
+		<security:intercept-url pattern="/" access="hasAnyRole('USER_ROLE','ADMIN_ROLE')" />
+		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/users/**" access="hasRole('USER_ROLE')"/>
+		<security:intercept-url pattern="/admin/**" access="hasRole('ADMIN_ROLE')"/>
+		<security:intercept-url pattern="/check" access="hasAnyRole('USER_ROLE','ADMIN_ROLE')"/>
 
 		<security:form-login login-page="/login"
 			authentication-failure-url="/loginfailed" />
