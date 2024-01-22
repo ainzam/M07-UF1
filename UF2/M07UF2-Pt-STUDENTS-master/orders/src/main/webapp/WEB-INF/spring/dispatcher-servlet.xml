@@ -11,8 +11,8 @@
                            http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 
-	<!-- TODO add resource mapping for images here 
-	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" / -->
+	<!-- TODO add resource mapping for images here  -->
+	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
 
 	<!-- TODO add configuration to find Spring elements, such as Controllers, 
 		Services, Repositories, etc -->
