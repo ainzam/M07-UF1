@@ -99,6 +99,7 @@ public class OrderController {
 		return "redirect:/users/orders/newOrder";
 	}
 
+	@GetMapping("/newOrder/decreaseItem")
 	public String newOrderDecreaseItem(@SessionAttribute("order") Order order,
 			@RequestParam("reference") String reference) {
 
