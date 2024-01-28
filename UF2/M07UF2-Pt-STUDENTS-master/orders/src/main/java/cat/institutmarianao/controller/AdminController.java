@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,15 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 import cat.institutmarianao.domain.Order;
 import cat.institutmarianao.service.OrderService;
 
-//TODO - Configure Spring element and add mappings
+// - Configure Spring element and add mappings
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/orders")
 public class AdminController {
 
 	@Autowired
 	private OrderService orderService;
 	
-	@GetMapping("/orders")
+	@GetMapping
 	public ModelAndView orders() {
 
 		// get all user orders
@@ -40,7 +41,7 @@ public class AdminController {
 
 	@GetMapping("/setDeliveryDate")
 	public String setDeliveryDate(@RequestParam("reference") Integer reference,
-			@RequestParam("deliveryDate") Date deliveryDate) {
+			 @RequestParam("deliveryDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date deliveryDate) {
 
 		//  - Get the order related to the reference passed as parameter
 		Order order = orderService.getByReference(reference);

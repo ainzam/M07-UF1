@@ -15,35 +15,37 @@
 	<div class="container">
 		<jsp:include page="sections/header.jsp" />
 		<%-- TODO finish order form with address fields --%>
-		<form action="/orders/users/orders/newOrder/finishOrder" method="post">
+		<form:form modelAttribute="order" action="/orders/users/orders/newOrder/finishOrder" method="post" class="row">
+			<div class="col-md-6">
+				<h2>Shipment Data</h2>
+				<div class="form-group">
+					<label for="deliveryAddress.address">Address:</label>
+					<form:input path="deliveryAddress.address"
+						id="deliveryAddress.address" class="form-control" required="true" />
+				</div>
+				<div class="form-group">
+					<label for="deliveryAddress.zipCode">Zip Code:</label>
+					<form:input path="deliveryAddress.zipCode"
+						id="deliveryAddress.zipCode" class="form-control" required="true" />
+				</div>
+				<div class="form-group">
+					<label for="deliveryAddress.city">City:</label>
+					<form:input path="deliveryAddress.city" id="deliveryAddress.city"
+						class="form-control" required="true" />
+				</div>
+				<div class="form-group">
+					<label for="deliveryAddress.state">State/Province:</label>
+					<form:input path="deliveryAddress.state" id="deliveryAddress.state"
+						class="form-control" required="true" />
+				</div>
+				<div class="form-group">
+					<label for="deliveryAddress.country">Country:</label>
+					<form:input path="deliveryAddress.country"
+						id="deliveryAddress.country" class="form-control" required="true" />
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<h2>Client Data</h2>
-					<p>
-						<strong>First name:</strong> ${order.client.firstName}
-					</p>
-					<p>
-						<strong>Last name:</strong> ${order.client.lastName}
-					</p>
-
-					<h2>Shipment Data</h2>
-					<!-- Add input fields for address, zip code, city, state/province, and country -->
-					<label for="address">Address:</label><br>
-                    <input type="text" id="address" name="address" required>
-
-                    <label for="zipCode">Zip Code:</label><br>
-                    <input type="text" id="zipCode" name="zipCode" required>
-
-                    <label for="city">City:</label><br>
-                    <input type="text" id="city" name="city" required>
-
-                    <label for="state">State/Province:</label><br>
-                    <input type="text" id="state" name="state" required>
-
-                    <label for="country">Country:</label><br>
-                    <input type="text" id="country" name="country" required>
-					<!-- Add other address fields as needed -->
-
 					<h2>Items</h2>
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
@@ -59,25 +61,24 @@
 							<!-- Iterate over items and display details -->
 							<c:forEach var="item" items="${order.items}">
 								<tr>
-									<td>${item.reference}</td>
-									<td>${item.name}</td>
-									<td>${item.price}</td>
-									<td>${item.quantity}</td>
-									<td>${item.amount}</td>
+									<td>${item.key.reference}</td>
+									<td>${item.key.name}</td>
+									<td>${item.key.price}€</td>
+									<td>${item.value}</td>
+									<td>${item.value * item.key.price}€</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<!-- Add a submit button for the form -->
-					<button type="submit" class="btn btn-primary">Purchase</button>
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Add a submit button for the form -->
+						<button type="submit" class="btn btn-primary">Purchase</button>
+					</div>
 				</div>
 			</div>
-		</form>
+		</form:form>
 	</div>
 </body>
 </html>

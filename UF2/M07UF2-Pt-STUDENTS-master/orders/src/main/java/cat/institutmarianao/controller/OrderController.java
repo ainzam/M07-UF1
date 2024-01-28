@@ -24,7 +24,7 @@ import cat.institutmarianao.domain.User;
 import cat.institutmarianao.service.ItemService;
 import cat.institutmarianao.service.OrderService;
 
-//TODO - Configure Spring element and add mappings
+// - Configure Spring element and add mappings
 @Controller
 @SessionAttributes("order")
 @RequestMapping("/users/orders")
@@ -52,15 +52,15 @@ public class OrderController {
 	
 	@GetMapping
     public ModelAndView orders() {
-        // TODO - get authenticated user here
+        // - get authenticated user here
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User client = (User) userDetailsService.loadUserByUsername(username);
 
-        // TODO - get user orders
+        // - get user orders
         Iterable<Order> orders = orderService.findByUser(client);
 
-        // TODO - Prepare the orders.jsp view and send user orders and Order.STATES as parameter
+        //  - Prepare the orders.jsp view and send user orders and Order.STATES as parameter
         ModelAndView modelAndView = new ModelAndView("orders");
         modelAndView.addObject("orders", orders);
         modelAndView.addObject("states", Order.STATES);
@@ -69,14 +69,10 @@ public class OrderController {
 
     @GetMapping("/newOrder")
     public ModelAndView newOrder() {
-        // TODO - Prepare the newOrder.jsp view and send all the available items
-        // TODO - The new user order is in session
-    	
+        //  - Prepare the newOrder.jsp view and send all the available items
+        //  - The new user order is in session
         ModelAndView modelAndView = new ModelAndView("newOrder");
         modelAndView.addObject("items", itemService.getAll());
-        
-        Order order = setupOrder();
-        modelAndView.addObject("order", order);
         
         return modelAndView;
     }
@@ -90,20 +86,26 @@ public class OrderController {
     @GetMapping("/newOrder/increaseItem")
     public String newOrderIncreaseItem(@SessionAttribute("order") Order order,
                                        @RequestParam("reference") String reference) {
-        // TODO - Get the item related to the reference passed as parameter
+        //  - Get the item related to the reference passed as parameter
         Item item = itemService.getItem(reference);
-        // TODO - Increase item quantity
+        //  - Increase item quantity
         order.increaseQuantity(item);
+        
         return "redirect:/users/orders/newOrder";
     }
 
     @GetMapping("/newOrder/decreaseItem")
     public String newOrderDecreaseItem(@SessionAttribute("order") Order order,
                                        @RequestParam("reference") String reference) {
-        // TODO - Get the item related to the reference passed as parameter
+        //  - Get the item related to the reference passed as parameter
         Item item = itemService.getItem(reference);
-        // TODO - Decrease item quantity
+        //  - Decrease item quantity
         order.decreaseQuantity(item);
+        
+        ModelAndView modelAndView = new ModelAndView("newOrder");
+        modelAndView.addObject("items", itemService.getAll());
+        modelAndView.addObject("selectedItems", order.getItems());
+        
         return "redirect:/users/orders/newOrder";
     }
 
@@ -117,15 +119,16 @@ public class OrderController {
     @PostMapping("/newOrder/finishOrder")
     public String finishOrder(@ModelAttribute("order") Order order,
                               BindingResult bindingResult, SessionStatus sessionStatus) {
-        // TODO - Get the order submitted in the form and validate it
+        //  - Get the order submitted in the form and validate it
         if (bindingResult.hasErrors()) {
             return "finishOrder";
         }
-        // TODO - Set a new reference for the order using Order.incReferenceSequence()
+        
+        //  - Set a new reference for the order using Order.incReferenceSequence()
         order.setReference(Order.incReferenceSequence());
-        // TODO - Set order start date to the current date
+        //  - Set order start date to the current date
         order.setStartDate(new Date());
-        // TODO - Save order
+        //  - Save order
         orderService.save(order);
 
         sessionStatus.setComplete(); // Clean session attributes - leave a new order ready in session

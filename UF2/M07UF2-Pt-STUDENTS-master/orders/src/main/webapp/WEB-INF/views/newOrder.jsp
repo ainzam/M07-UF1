@@ -27,25 +27,39 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!-- Iterate over the items in the order and display them -->
-							<c:forEach var="item" items="${order.items}">
+							<!-- Iterate over the items in the order and display them in "Select items" table -->
+							<c:forEach var="selectedItem" items="${order.items}">
 								<tr>
+									<td><img
+										src="<c:url value='/images/${selectedItem.key.image}' />"
+										alt="${selectedItem.key.name}" width="50" height="50">
+										${selectedItem.key.name} x ${selectedItem.value} = ${selectedItem.value * selectedItem.key.price}€
+										<br>
+										<small>${item.description}</small></td>
+									<!-- Decrease item button -->
 									<td>
-										<form action="/users/orders/newOrder/decreaseItem"
+										<form action="/orders/users/orders/newOrder/decreaseItem"
 											method="get">
 											<input type="hidden" name="reference"
-												value="${item.reference}" />
+												value="${selectedItem.key.reference}" />
 											<button type="submit" class="btn btn-warning">-</button>
-										</form> <img src="<c:url value='/images/${item.image}' />"
-										alt="${item.name}" width="50" height="50"> ${item.name}
+										</form>
+									</td>
+									<!-- Increase item button -->
+									<td>
+										<form action="/orders/users/orders/newOrder/increaseItem"
+											method="get">
+											<input type="hidden" name="reference"
+												value="${selectedItem.key.reference}" />
+											<button type="submit" class="btn btn-success">+</button>
+										</form>
 									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 					<!-- Clear items button -->
-					<form action="/orders/users/orders/newOrder/clearItems"
-						method="get">
+					<form action="/orders/users/orders/newOrder/clearItems" method="get">
 						<button type="submit" class="btn btn-danger">Clear Items</button>
 					</form>
 				</div>
@@ -61,8 +75,9 @@
 							<c:forEach var="item" items="${items}">
 								<tr>
 									<td><img src="<c:url value='/images/${item.image}' />"
-										alt="${item.name}" width="50" height="50"> ${item.name}
-									</td>
+										alt="${item.name}" width="50" height="50"> ${item.name}<br>
+										<small>${item.description}</small><br> <small>Price:
+											${item.price}€</small></td>
 									<!-- Increase item button -->
 									<td>
 										<form action="/orders/users/orders/newOrder/increaseItem"
@@ -70,15 +85,6 @@
 											<input type="hidden" name="reference"
 												value="${item.reference}" />
 											<button type="submit" class="btn btn-success">+</button>
-										</form>
-									</td>
-									<!-- Decrease item button -->
-									<td>
-										<form action="/orders/users/orders/newOrder/decreaseItem"
-											method="get">
-											<input type="hidden" name="reference"
-												value="${item.reference}" />
-											<button type="submit" class="btn btn-warning">-</button>
 										</form>
 									</td>
 								</tr>

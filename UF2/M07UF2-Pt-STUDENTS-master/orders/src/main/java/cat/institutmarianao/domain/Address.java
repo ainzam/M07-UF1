@@ -57,4 +57,10 @@ public class Address {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	
+    @Override
+    public String toString() {
+        return "Street: " + address + ", City: " + city + ", Zip Code: " + zipCode + ", State: " + state; // Ajusta según tus atributos
+    }
+	
 }
