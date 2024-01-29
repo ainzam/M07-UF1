@@ -36,7 +36,7 @@
 			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 
 		<security:form-login login-page="/login"
-			authentication-failure-url="/loginfailed" default-target-url="/check" /> <!-- Configura la redirección después del inicio de sesión -->
+			authentication-failure-url="/loginfailed" /> <!-- Configura la redirección después del inicio de sesión -->
 
 		<security:logout logout-success-url="/"
 			invalidate-session="true" />

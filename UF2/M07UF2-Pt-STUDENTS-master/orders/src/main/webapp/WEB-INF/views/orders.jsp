@@ -26,7 +26,6 @@
 						<th>Reference</th>
 						<th>Delivery Address</th>
 						<th>Order Date</th>
-						<th>State</th>
 						<th>Delivery Date</th>
 						<th>Change State</th>
 						<th>Change Delivery Date</th>
@@ -40,7 +39,6 @@
 							<td>${order.client.username}</td>
 							<td><fmt:formatDate value="${order.startDate}"
 									pattern="MMM d, yyyy" /></td>
-							<td>${states[order.state]}</td>
 							<td><fmt:formatDate value="${order.deliveryDate}"
 									pattern="MMM d, yyyy" /></td>
 							<td>
