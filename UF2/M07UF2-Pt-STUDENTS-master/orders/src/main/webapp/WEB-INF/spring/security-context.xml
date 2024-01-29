@@ -9,35 +9,45 @@
             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!-- TODO add configuration to find Spring elements, such as Controllers, Services, Repositories, etc -->
+	<!-- TODO add configuration to find Spring elements, such as Controllers, 
+		Services, Repositories, etc -->
 	<mvc:annotation-driven
 		enable-matrix-variables="true">
 	</mvc:annotation-driven>
-	
+
 	<context:component-scan
 		base-package="cat.institutmarianao.controller cat.institutmarianao.repository cat.institutmarianao.service" />
-		
+
 	<security:http auto-config="true" use-expressions="true">
 		<!-- TODO Configure security context -->
 		<security:csrf disabled="true" />
-		
-		<security:intercept-url pattern="/" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
-		<security:intercept-url pattern="/login" access="permitAll" />
-		<security:intercept-url pattern="/images/**" access="permitAll" />
-		<security:intercept-url pattern="/users/**" access="hasRole('ROLE_USER')"/>
-		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-		<security:intercept-url pattern="/check" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+
+		<security:intercept-url pattern="/"
+			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+		<security:intercept-url pattern="/login"
+			access="permitAll" />
+		<security:intercept-url pattern="/images/**"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/users/**"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/admin/**"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/**"
+			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 
 		<security:form-login login-page="/login"
-			authentication-failure-url="/loginfailed" />
-		<security:logout logout-success-url="/check"
+			authentication-failure-url="/loginfailed" default-target-url="/check" /> <!-- Configura la redirección después del inicio de sesión -->
+
+		<security:logout logout-success-url="/"
 			invalidate-session="true" />
+
 		<security:access-denied-handler
 			error-page="/login" />
 	</security:http>
 
 	<security:authentication-manager>
-		<security:authentication-provider user-service-ref="userDetailsServiceImpl">
+		<security:authentication-provider
+			user-service-ref="userDetailsServiceImpl">
 		</security:authentication-provider>
 	</security:authentication-manager>
 

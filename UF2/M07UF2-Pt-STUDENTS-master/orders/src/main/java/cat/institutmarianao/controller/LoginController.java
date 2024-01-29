@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
 	
-	@GetMapping(value = "/check")
+	@GetMapping(value = "/")
 	public String check(HttpServletRequest request) throws ServletException, IOException {
 		if (request.isUserInRole("ROLE_ADMIN")) {
 			return "redirect:/admin/orders";
