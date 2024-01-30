@@ -17,33 +17,38 @@
 		<%-- TODO finish order form with address fields --%>
 		<form:form modelAttribute="order" action="/orders/users/orders/newOrder/finishOrder" method="post" class="row">
 			<div class="col-md-6">
-				<h2>Shipment Data</h2>
-				<div class="form-group">
-					<label for="deliveryAddress.address">Address:</label>
-					<form:input path="deliveryAddress.address"
-						id="deliveryAddress.address" class="form-control" required="true" />
-				</div>
-				<div class="form-group">
-					<label for="deliveryAddress.zipCode">Zip Code:</label>
-					<form:input path="deliveryAddress.zipCode"
-						id="deliveryAddress.zipCode" class="form-control" required="true" />
-				</div>
-				<div class="form-group">
-					<label for="deliveryAddress.city">City:</label>
-					<form:input path="deliveryAddress.city" id="deliveryAddress.city"
-						class="form-control" required="true" />
-				</div>
-				<div class="form-group">
-					<label for="deliveryAddress.state">State/Province:</label>
-					<form:input path="deliveryAddress.state" id="deliveryAddress.state"
-						class="form-control" required="true" />
-				</div>
-				<div class="form-group">
-					<label for="deliveryAddress.country">Country:</label>
-					<form:input path="deliveryAddress.country"
-						id="deliveryAddress.country" class="form-control" required="true" />
-				</div>
-			</div>
+                <h2>Shipment Data</h2>
+
+                <div class="form-group">
+                    <label for="deliveryAddress.address">Address:</label>
+                    <form:input path="deliveryAddress.address" id="deliveryAddress.address" class="form-control" />
+                    <form:errors path="deliveryAddress.address" cssClass="error" element="div" />
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryAddress.zipCode">Zip Code:</label>
+                    <form:input path="deliveryAddress.zipCode" id="deliveryAddress.zipCode" class="form-control" />
+                    <form:errors path="deliveryAddress.zipCode" cssClass="error" element="div" />
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryAddress.city">City:</label>
+                    <form:input path="deliveryAddress.city" id="deliveryAddress.city" class="form-control" />
+                    <form:errors path="deliveryAddress.city" cssClass="error" element="div" />
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryAddress.state">State/Province:</label>
+                    <form:input path="deliveryAddress.state" id="deliveryAddress.state" class="form-control" />
+                    <form:errors path="deliveryAddress.state" cssClass="error" element="div" />
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryAddress.country">Country:</label>
+                    <form:input path="deliveryAddress.country" id="deliveryAddress.country" class="form-control" />
+                    <form:errors path="deliveryAddress.country" cssClass="error" element="div" />
+                </div>
+            </div>
 			<div class="row">
 				<div class="col-md-6">
 					<h2>Items</h2>

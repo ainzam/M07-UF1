@@ -1,13 +1,31 @@
 package cat.institutmarianao.domain;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class Address {
 
 	private String recipientName;
 
+    @NotBlank(message = "Address cannot be blank")
+    @Size(max = 50, message = "Address must be at most 50 characters")
 	private String address;
+    
+    @NotBlank(message = "Zip code cannot be blank")
+    @Size(max = 10, message = "Zip code must be at most 10 characters")
 	private String zipCode;
+    
+    @NotBlank(message = "City cannot be blank")
+    @Size(max = 50, message = "City must be at most 50 characters")
 	private String city;
+    
+
+    @NotBlank(message = "State cannot be blank")
+    @Size(max = 20, message = "State must be at most 20 characters")
 	private String state;
+    
+    @NotBlank(message = "Country cannot be blank")
+    @Size(max = 20, message = "Country must be at most 20 characters")
 	private String country;
 
 	public String getRecipientName() {

@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class User implements UserDetails {
 
 	/**
@@ -12,8 +15,16 @@ public class User implements UserDetails {
 	 */
 	private static final long serialVersionUID = 8354050838873372900L;
 
+    @NotBlank(message = "Username cannot be blank")
+    @Size(max = 50, message = "Username must be at most 50 characters")
 	private String username;
+    
+    
+    @NotBlank(message = "Password cannot be blank")
+    @Size(min = 6, max = 50, message = "Password must be between 6 and 50 characters")
 	private String password;
+    
+    @NotBlank(message = "First name cannot be blank")
 	private String firstName;
 	private String lastName;
 

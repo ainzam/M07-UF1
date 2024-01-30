@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 public class Order {
 	public static final String[] STATES = { "order.state.pending", "order.state.transit", "order.state.delivery",
 			"order.state.absent", "order.state.pending.collection", "order.state.returned" };
@@ -11,12 +15,21 @@ public class Order {
 	private static int referenceSequence = 1;
 
 	private Integer reference;
+	
+    @NotNull(message = "Client cannot be null")
+    @Valid
 	private User client;
+    
+    
+    @NotNull(message = "Delivery address cannot be null")
+    @Valid
 	private Address deliveryAddress = new Address();
 	private Map<Item, Integer> items = new HashMap<>();
 	private Date startDate;
 	private Date deliveryDate;
 	private Integer state = 0;
+	
+	@Min(value = 1, message = "Total quantity must be at least 1")
 	private Integer totalQuantity = 0;
 	private Double totalAmount = 0d;
 
