@@ -23,7 +23,7 @@
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr>
-								<th>Select items</th>
+								<th><spring:message code="newOrder.selected.items" /></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -60,14 +60,15 @@
 					</table>
 					<!-- Clear items button -->
 					<form action="/orders/users/orders/newOrder/clearItems" method="get">
-						<button type="submit" class="btn btn-danger">Clear Items</button>
+						<button type="submit" class="btn btn-danger"><spring:message
+                                code="newOrder.clear" /></button>
 					</form>
 				</div>
 				<div class="col-md-6 offset-md-3">
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr>
-								<th>Items</th>
+								<th><spring:message code="newOrder.items" /></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -94,8 +95,8 @@
 					<!-- Finish order button -->
 					<form action="/orders/users/orders/newOrder/finishOrder"
 						method="get">
-						<button type="submit" class="btn btn-primary">Finish
-							Order</button>
+						<button type="submit" class="btn btn-primary"><spring:message
+                                code="newOrder.finish.order" /></button>
 					</form>
 				</div>
 			</div>

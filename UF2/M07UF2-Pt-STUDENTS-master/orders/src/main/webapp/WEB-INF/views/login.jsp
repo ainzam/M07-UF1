@@ -24,12 +24,12 @@
 						<div class="card">
 
 							<div class="card-header">
-								<h5 class="card-title">Please, enter your credentials</h5>
+								<h5 class="card-title"><spring:message code="login.give.credentials" /></h5>
 							</div>
 							<div class="card-body">
 								<c:if test="${not empty error}">
 									<div class="alert alert-danger alert-dismissible" role="alert">
-										<span>The given credentials are wrong</span>
+										<span><spring:message code="login.credentials.failure" /></span>
 										<button type="button" class="btn-close"
 											data-bs-dismiss="alert"></button>
 									</div>
@@ -39,7 +39,7 @@
 									<span class="input-group-text">
 										<i class="bi bi-person-fill"></i>
 									</span>
-									<input class="form-control" placeholder="Username"
+									<input class="form-control" placeholder="<spring:message code='login.username' />"
 										name="username" type="text">
 								</div>
 
@@ -47,14 +47,14 @@
 									<span class="input-group-text">
 										<i class="bi bi-key-fill"></i>
 									</span>
-									<input class="form-control" placeholder="Password"
+									<input class="form-control" placeholder="<spring:message code='login.password' />"
 										name="password" type="password">
 								</div>
 
 							</div>
 
 							<div class="card-footer d-grid">
-								<input class="btn btn-secondary" type="submit" value="Login">
+								<input class="btn btn-secondary" type="submit" value="<spring:message code='login.login' />">
 							</div>
 						</div>
 					</div>

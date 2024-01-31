@@ -23,9 +23,9 @@
 
                 <div class="form-group">
                     <label for="recipientName"><spring:message code="finishOrder.recipient" /></label>
-                    <form:input path="deliveryAddress.recipientName" id="recipientName"
-                        class="form-control" />
-                    <form:errors path="deliveryAddress.recipientName" cssClass="error" element="div" />
+					<form:input path="deliveryAddress.recipientName" id="recipientName"
+						class="form-control" />
+					<form:errors path="deliveryAddress.recipientName" cssClass="error" element="div" />
                 </div>
                 
                 <div class="form-group">

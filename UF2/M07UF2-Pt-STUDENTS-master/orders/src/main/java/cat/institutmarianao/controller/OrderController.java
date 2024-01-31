@@ -23,6 +23,7 @@ import cat.institutmarianao.domain.Order;
 import cat.institutmarianao.domain.User;
 import cat.institutmarianao.service.ItemService;
 import cat.institutmarianao.service.OrderService;
+import jakarta.validation.Valid;
 
 // - Configure Spring element and add mappings
 @Controller
@@ -118,7 +119,7 @@ public class OrderController {
     }
 
     @PostMapping("/newOrder/finishOrder")
-    public String finishOrder(@ModelAttribute("order") Order order,
+    public String finishOrder(@ModelAttribute("order")@Valid Order order,
                               BindingResult bindingResult, SessionStatus sessionStatus) {
         //  - Get the order submitted in the form and validate it
         if (bindingResult.hasErrors()) {

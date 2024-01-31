@@ -7,6 +7,7 @@ import java.util.Map;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class Order {
 	public static final String[] STATES = { "order.state.pending", "order.state.transit", "order.state.delivery",
@@ -16,14 +17,15 @@ public class Order {
 
 	private Integer reference;
 	
-    @NotNull(message = "Client cannot be null")
-    @Valid
 	private User client;
     
     
     @NotNull(message = "Delivery address cannot be null")
     @Valid
 	private Address deliveryAddress = new Address();
+    
+    @NotNull(message = "Items cannot be null")
+    @Size(min = 1, message = "At least one item must be selected")
 	private Map<Item, Integer> items = new HashMap<>();
 	private Date startDate;
 	private Date deliveryDate;

@@ -23,13 +23,13 @@
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>Reference</th>
-						<th>Delivery Address</th>
-						<th>Order Date</th>
-						<th>Delivery Date</th>
-						<th>Change State</th>
-						<th>Change Delivery Date</th>
-						<th>Details</th>
+						<th><spring:message code="orders.reference" /></th>
+						<th><spring:message code="orders.client" /></th>
+						<th><spring:message code="orders.startDate" /></th>
+						<th><spring:message code="orders.deliveryDate" /></th>
+						<th><spring:message code="orders.state" /></th>
+						<th><spring:message code="orders.deliveryDate" /></th>
+						<th><spring:message code="orders.details" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,12 +50,24 @@
 											<option value="${loop.index}"
 												${order.state eq loop.index ? 'selected' : ''}>
 												<c:choose>
-													<c:when test="${loop.index eq 0}">Pending</c:when>
-													<c:when test="${loop.index eq 1}">In Transit</c:when>
-													<c:when test="${loop.index eq 2}">Delivered</c:when>
-													<c:when test="${loop.index eq 3}">Absent</c:when>
-													<c:when test="${loop.index eq 4}">Pending Collection</c:when>
-													<c:when test="${loop.index eq 5}">Returned</c:when>
+													<c:when test="${loop.index eq 0}">
+														<spring:message code="order.state.pending" />
+													</c:when>
+													<c:when test="${loop.index eq 1}">
+														<spring:message code="order.state.transit" />
+													</c:when>
+													<c:when test="${loop.index eq 2}">
+														<spring:message code="order.state.delivery" />
+													</c:when>
+													<c:when test="${loop.index eq 3}">
+														<spring:message code="order.state.absent" />
+													</c:when>
+													<c:when test="${loop.index eq 4}">
+														<spring:message code="order.state.pending.collection" />
+													</c:when>
+													<c:when test="${loop.index eq 5}">
+														<spring:message code="order.state.returned" />
+													</c:when>
 													<c:otherwise>Unknown</c:otherwise>
 												</c:choose>
 											</option>
@@ -114,12 +126,12 @@
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>Reference</th>
-						<th>Delivery Address</th>
-						<th>Order Date</th>
-						<th>State</th>
-						<th>Delivery Date</th>
-						<th>Details</th>
+						<th><spring:message code="orders.reference" /></th>
+						<th><spring:message code="orders.deliveryAddress" /></th>
+						<th><spring:message code="orders.startDate" /></th>
+						<th><spring:message code="orders.state" /></th>
+						<th><spring:message code="orders.deliveryDate" /></th>
+						<th><spring:message code="orders.details" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -144,11 +156,11 @@
 								<table class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>Reference</th>
-											<th>Item</th>
-											<th>Price</th>
-											<th>Quantity</th>
-											<th>Amount</th>
+											<th><spring:message code="finishOrder.reference" /></th>
+											<th><spring:message code="finishOrder.item" /></th>
+											<th><spring:message code="finishOrder.price" /></th>
+											<th><spring:message code="finishOrder.quantity" /></th>
+											<th><spring:message code="finishOrder.amount" /></th>
 										</tr>
 									</thead>
 									<tbody>

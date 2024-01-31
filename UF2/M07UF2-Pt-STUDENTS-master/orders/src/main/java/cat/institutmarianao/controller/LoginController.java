@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 
-// TODO - Configure Spring element and add mappings
+// - Configure Spring element and add mappings
 @Controller
 public class LoginController {
 	

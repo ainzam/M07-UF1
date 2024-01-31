@@ -11,10 +11,10 @@
                            http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 
-	<!-- TODO add resource mapping for images here  -->
+	<!--  add resource mapping for images here  -->
 	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
 
-	<!-- TODO add configuration to find Spring elements, such as Controllers, 
+	<!--  add configuration to find Spring elements, such as Controllers, 
 		Services, Repositories, etc -->
 	<mvc:annotation-driven
 		enable-matrix-variables="true">
@@ -29,7 +29,7 @@
 		base-package="cat.institutmarianao.controller cat.institutmarianao.repository cat.institutmarianao.service" />
 
 
-	<!-- TODO add Spring configuration for view resolver -->
+	<!--  add Spring configuration for view resolver -->
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -37,11 +37,12 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- TODO add configuration for language internationalization -->
+	<!--  add configuration for language internationalization -->
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="messages" />
+		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 	
 	<bean id="localeResolver"
