@@ -2,8 +2,6 @@ package org.ioc.daw.db;
 
 
 
-import org.h2.jdbc.JdbcConnection;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
