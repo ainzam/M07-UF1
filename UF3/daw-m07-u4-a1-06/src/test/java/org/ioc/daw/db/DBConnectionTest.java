@@ -1,17 +1,13 @@
 package org.ioc.daw.db;
 
-import org.ioc.daw.db.DBConnection;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class DBConnectionTest {
     DBConnection dBConnection;

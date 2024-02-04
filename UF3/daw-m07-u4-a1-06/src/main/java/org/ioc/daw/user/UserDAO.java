@@ -40,12 +40,13 @@ public class UserDAO {
         return findUniqueResult(preparedStatement);
     }
 
-    public User createUser(String username, String name, String email) throws Exception {
-        String qry = "INSERT INTO users (username, name, email) VALUES (?, ?, ?)";
+    public User createUser(String username, String name, String email, String password) throws Exception {
+        String qry = "INSERT INTO users (username, name, email, password) VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = getPreparedStatement(qry);
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, name);
         preparedStatement.setString(3, email);
+        preparedStatement.setString(4, password);
         return createOrUpdateUser(username, preparedStatement);
     }
 
@@ -72,7 +73,42 @@ public class UserDAO {
         preparedStatement.setInt(1, user.getUserId());
         createOrUpdateUser(user.getUsername(), preparedStatement);
     }
+    
+    //Mètode deactivateUser que actualitza el camp active de l'usuari a la base de dades
+    public void deactivateUser(User user) throws Exception {
+        String qry = "UPDATE users SET active = false WHERE user_id = ?";
+        PreparedStatement preparedStatement = getPreparedStatement(qry);
+        preparedStatement.setInt(1, user.getUserId());
+        executeUpdateQuery(preparedStatement);
+    }
+    
+    //Mètode findActiveUsers que retorna una llista amb tots els usuaris actius
+    public List<User> findActiveUsers() throws SQLException {
+        String qry = "SELECT * FROM users WHERE active = true";
+        PreparedStatement preparedStatement = getPreparedStatement(qry);
+        return executeQuery(preparedStatement);
+    }
+    
+    //Mètode updateUserRanking que actualitza el 'ranking' de l'usuari a la base de dades
 
+    public void updateUserRanking(User user, int newRanking) throws Exception {
+        String qry = "UPDATE users SET rank = ? WHERE user_id = ?";
+        PreparedStatement preparedStatement = getPreparedStatement(qry);
+        preparedStatement.setInt(1, newRanking);
+        preparedStatement.setInt(2, user.getUserId());
+        executeUpdateQuery(preparedStatement);
+    }
+    
+    //updateUserPassword
+    
+    public void updateUserPassword(User user, String newPassword) throws Exception {
+        String qry = "UPDATE users SET password = ? WHERE user_id = ?";
+        PreparedStatement preparedStatement = getPreparedStatement(qry);
+        preparedStatement.setString(1, newPassword);
+        preparedStatement.setInt(2, user.getUserId());
+        executeUpdateQuery(preparedStatement);
+    }
+    
     private User findUniqueResult(PreparedStatement preparedStatement) throws Exception {
         List<User> users = executeQuery(preparedStatement);
         if (users.isEmpty()) {
@@ -136,7 +172,8 @@ public class UserDAO {
         int rank = rs.getInt("rank");
         boolean active = rs.getBoolean("active");
         Timestamp timestamp = rs.getTimestamp("created_on");
-        User user = new User(userId, username, name, email, rank, timestamp, active);
+        String password = rs.getString("password");  // Afegeix aquesta línia
+        User user = new User(userId, username, name, email, rank, timestamp, active, password);
         return user;
     }
 

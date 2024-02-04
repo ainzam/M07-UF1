@@ -10,8 +10,9 @@ public class User {
     private int rank;
     private Timestamp createdOn;
     private boolean active;
+    private String password;
 
-    public User(int userId, String username, String name, String email, int rank, Timestamp createdOn, boolean active) {
+    public User(int userId, String username, String name, String email, int rank, Timestamp createdOn, boolean active, String password) {
         this.userId = userId;
         this.username = username;
         this.name = name;
@@ -19,6 +20,7 @@ public class User {
         this.rank = rank;
         this.createdOn = createdOn;
         this.active = active;
+        this.password = password;
     }
 
     public int getUserId() {
@@ -47,5 +49,9 @@ public class User {
 
     public boolean isActive() {
         return active;
+    }
+    
+    public String getPassword() {
+        return password;
     }
 }

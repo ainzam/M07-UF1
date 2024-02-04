@@ -12,6 +12,7 @@ import org.junit.Test;
 
 public class UserDAOTest {
 
+
     private DBConnection dBConnection;
     private String connectionProperties = "db_test.properties";
     UserDAO userDAO;
@@ -60,17 +61,20 @@ public class UserDAOTest {
         String username = "testUser";
         String name = "Pete Test";
         String email = "pete@email.com";
-        User createdUser = userDAO.createUser(username, name, email);
+        String password = "securePassword";  // Agrega la contraseña aquí
+        User createdUser = userDAO.createUser(username, name, email, password);
         Assert.assertNotNull(createdUser);
         Assert.assertEquals(username, createdUser.getUsername());
         Assert.assertNotEquals(0, createdUser.getUserId());
     }
 
+    @Test
     public void createUserEscapesSQLCharacters() throws Exception {
         String username = "sl','sls";
         String name = "Pete Test";
         String email = "pete@email.com";
-        User createdUser = userDAO.createUser(username, name, email);
+        String password = "securePassword";  // Agrega la contraseña aquí
+        User createdUser = userDAO.createUser(username, name, email, password);
         Assert.assertNotNull(createdUser);
     }
 
@@ -79,7 +83,8 @@ public class UserDAOTest {
         String username = "testUser";
         String name = "Pete Test";
         String email = "pete@email.com";
-        User createdUser = userDAO.createUser(username, name, email);
+        String password = "securePassword";  // Agrega la contraseña aquí
+        User createdUser = userDAO.createUser(username, name, email, password);
         Assert.assertNotNull(createdUser);
         Assert.assertEquals(email, createdUser.getEmail());
         User updatedUser = userDAO.updateUserEmail(createdUser, "new@email.com");
@@ -92,11 +97,95 @@ public class UserDAOTest {
         String username = "testUser";
         String name = "Pete Test";
         String email = "pete@email.com";
-        User createdUser = userDAO.createUser(username, name, email);
+        String password = "securePassword";  // Agrega la contraseña aquí
+        User createdUser = userDAO.createUser(username, name, email, password);
         Assert.assertNotNull(createdUser);
         userDAO.deleteUser(createdUser);
         User deletedUser = userDAO.findUserByUsername(username);
         Assert.assertNull(deletedUser);
+    }
+    
+  //Nou test per a la funcionalitat de desactivar l'usuari
+    @Test
+    public void deactivateUser() throws Exception {
+        String username = "testUser";
+        String name = "Pete Test";
+        String email = "pete@email.com";
+        String password = "securePassword";  // Agrega la contraseña aquí
+        User createdUser = userDAO.createUser(username, name, email, password);
+        Assert.assertNotNull(createdUser);
+
+        userDAO.deactivateUser(createdUser);  // Añade la contraseña aquí
+
+        User deactivatedUser = userDAO.findUserByUsername(username);
+        Assert.assertNotNull(deactivatedUser);
+        Assert.assertFalse(deactivatedUser.isActive());
+    }
+
+    //Nou test per a la funcionalitat de recuperar tots els usuaris actius
+    @Test
+    public void findActiveUsers() throws SQLException {
+        List<User> allUsers = userDAO.findAllUsers();
+        Assert.assertFalse(allUsers.isEmpty());
+
+        List<User> activeUsers = userDAO.findActiveUsers();
+        Assert.assertFalse(activeUsers.isEmpty());
+
+        // Assegura't que la llista d'usuaris actius és més petita o igual que la llista completa
+        Assert.assertTrue(activeUsers.size() <= allUsers.size());
+
+        // Comprova que tots els usuaris a la llista d'usuaris actius estiguin actius
+        for (User user : activeUsers) {
+            Assert.assertTrue(user.isActive());
+        }
+    }
+
+    //Nou test per a la funcionalitat d'actualitzar el 'ranking' d'un usuari
+    @Test
+    public void updateUserRanking() throws Exception {
+        String username = "testUser";
+        String name = "Pete Test";
+        String email = "pete@email.com";
+        String password = "securePassword";  // Agrega la contraseña aquí
+        int initialRanking = 5;
+        User createdUser = userDAO.createUser(username, name, email, password);
+        Assert.assertNotNull(createdUser);
+
+        userDAO.updateUserRanking(createdUser, initialRanking);  // Añade la contraseña aquí
+
+        User updatedUser = userDAO.findUserByUsername(username);
+        Assert.assertNotNull(updatedUser);
+        Assert.assertEquals(initialRanking, updatedUser.getRank());
+    }
+
+    // Test para el método updateUserPassword
+    @Test
+    public void updateUserPassword() throws Exception {
+        // Datos del usuario de prueba
+        String username = "testUser";
+        String name = "Pete Test";
+        String email = "pete@email.com";
+        String password = "securePassword";
+        
+        // Crear un usuario con contraseña
+        User createdUser = userDAO.createUser(username, name, email, password);
+        Assert.assertNotNull(createdUser);
+
+        // Verificar que la contraseña inicial es correcta
+        Assert.assertEquals(password, createdUser.getPassword());
+
+        // Nueva contraseña
+        String newPassword = "newSecurePassword";
+
+        // Actualizar la contraseña del usuario
+        userDAO.updateUserPassword(createdUser, newPassword);
+
+        // Obtener el usuario actualizado de la base de datos
+        User updatedUser = userDAO.findUserByUsername(username);
+        
+        // Verificar que la contraseña se ha actualizado correctamente
+        Assert.assertNotNull(updatedUser);
+        Assert.assertEquals(newPassword, updatedUser.getPassword());
     }
 
 
