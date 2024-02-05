@@ -20,7 +20,7 @@ public class UserDAO {
     }
 
     public List<User> findAllUsers() throws SQLException {
-        String qry = "select user_id, username, name, email, rank, active, created_on from users";
+        String qry = "SELECT user_id, username, name, email, rank, active, created_on, password FROM users";
         PreparedStatement preparedStatement = getPreparedStatement(qry);
         List<User> users = executeQuery(preparedStatement);
         return users;
