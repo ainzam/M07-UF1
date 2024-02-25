@@ -14,4 +14,11 @@ public interface UserService {
 	void edit(User user);
 
 	void remove(User user);
+	
+	User findUserByUsername(String username);
+	
+	User findUserByEmail(String email);
+	
+	List<User> findActiveUsers();
+	
 }

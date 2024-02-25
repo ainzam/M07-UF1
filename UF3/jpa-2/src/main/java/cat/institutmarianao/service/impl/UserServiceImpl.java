@@ -33,4 +33,26 @@ public class UserServiceImpl implements UserService {
 	public List<User> getAllUsers() {
 		return entityManager.createQuery("select u from User u ").getResultList();
 	}
+	
+	@Override
+	public User findUserByUsername(String username) {
+		return (User) entityManager.createQuery("select object(o) from User o " + "where o.username = :username")
+				.setParameter("username", username).getSingleResult();
+	}
+	
+	@Override
+	public User findUserByEmail(String email) {
+	    return (User) entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email")
+	            .setParameter("email", email)
+	            .getSingleResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findActiveUsers() {
+		return entityManager.createQuery("select object(u) from User u where u.active = true")
+				.getResultList();
+	}
+	
+	
 }

@@ -2,6 +2,7 @@ package cat.institutmarianao.user.impl;
 
 import java.util.List;
 
+import jakarta.persistence.EntityManager;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ArchivePaths;
@@ -20,8 +21,11 @@ import jakarta.inject.Inject;
 
 @RunWith(Arquillian.class)
 public class UserServiceTest {
+	
 	@Inject
 	private UserService userService;
+	
+	private EntityManager entityManager;
 
 	@Deployment(testable = true)
 	public static JavaArchive createTestableDeployment() {
@@ -43,9 +47,15 @@ public class UserServiceTest {
 
 		List<User> users = userService.getAllUsers();
 		Assert.assertEquals(2, users.size());
+		
 
 		// TODO - Make the needed changes to active the following lines
-		// userService.remove(user0);
-		// userService.remove(user1);
+		User managedUser0 = entityManager.merge(user0);
+		userService.remove(managedUser0);
+		User managedUser1 = entityManager.merge(user0);
+		userService.remove(managedUser1);
+		
+		List<User> users0 = userService.getAllUsers();
+		Assert.assertEquals(0, users0.size());
 	}
 }
