@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User findUserByEmail(String email) {
-	    return (User) entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email")
+	    return (User) entityManager.createQuery("SELECT object(o) FROM User o WHERE u.email = :email")
 	            .setParameter("email", email)
 	            .getSingleResult();
 	}
@@ -50,9 +50,8 @@ public class UserServiceImpl implements UserService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findActiveUsers() {
-		return entityManager.createQuery("select object(u) from User u where u.active = true")
+		return entityManager.createQuery("select object(o) from User o where u.active = true")
 				.getResultList();
 	}
-	
 	
 }

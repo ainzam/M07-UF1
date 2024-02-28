@@ -11,23 +11,6 @@
 <body>
 	<div class="container">
 		<h1>Users</h1>
-		<form method="post" action="listActiveUsers">
-			<input type="submit" value="List Active Users">
-		</form>
-		<form method="post" action="searchUser">
-			<input type="text" name="searchQuery" placeholder="Enter username or email">
-			<input type="submit" value="Search User">
-		</form>
-		<form method="post" action="addUser">
-			<!-- Form fields to add a new user -->
-			<input type="submit" value="Add User">
-		</form>
-		<form method="post" action="deleteUser">
-			<input type="text" name="usernameOrEmail" placeholder="Enter username or email">
-			<input type="submit" value="Delete User">
-		</form>
-		<hr>
-		<h2>User List</h2>
 		<table class="table">
 			<tr>
 				<th>Username</th>
