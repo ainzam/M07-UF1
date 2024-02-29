@@ -24,8 +24,6 @@ public class UserServiceTest {
 	
 	@Inject
 	private UserService userService;
-	
-	//private EntityManager entityManager;
 
 	@Deployment(testable = true)
 	public static JavaArchive createTestableDeployment() {
@@ -47,10 +45,89 @@ public class UserServiceTest {
 
 		List<User> users = userService.getAllUsers();
 		Assert.assertEquals(2, users.size());
-		
 
-		// TODO - Make the needed changes to active the following lines
-		// userService.remove(user0);
-		// userService.remove(user1);
+		userService.remove(user0);
+		userService.remove(user1);
 	}
+	
+	@Test
+	public void createUser() {
+	    User user0 = Mock.getUser0();
+	    userService.create(user0);
+
+	    User createdUser = userService.findUserByUsername(user0.getUsername());
+	    Assert.assertNotNull(createdUser);
+	    Assert.assertEquals(user0.getUsername(), createdUser.getUsername());
+	    
+		userService.remove(user0);
+	    
+	}
+	
+	@Test
+	public void editUser() {
+	    User user0 = Mock.getUser0();
+	    userService.create(user0);
+
+	    user0.setName("New Name");
+	    userService.edit(user0);
+
+	    User editedUser = userService.findUserByUsername(user0.getUsername());
+	    Assert.assertEquals("New Name", editedUser.getName());
+	    
+	    userService.remove(user0);
+	}
+
+	@Test
+	public void removeUser() {
+	    User user0 = Mock.getUser0();
+	    userService.create(user0);
+	    
+	    userService.remove(user0);
+	    Assert.assertNotNull(userService.findUserByUsername(user0.getEmail())); 
+
+	}
+	
+	@Test
+	public void findActiveUsers() {
+		
+		User user0 = Mock.getUser0();
+		User user1 = Mock.getUser1();
+		
+	    userService.create(user0);
+	    userService.create(user1);
+
+	    List<User> activeUsers = userService.findActiveUsers();
+
+	    Assert.assertEquals(2, activeUsers.size());
+	    
+		userService.remove(user0);
+		userService.remove(user1);
+	}
+	
+	@Test
+	public void findUserByUsername() {
+	    User user0 = Mock.getUser0();
+	    userService.create(user0);
+
+	    User foundUser = userService.findUserByUsername(user0.getUsername());
+	    Assert.assertEquals(user0.getUsername(), foundUser.getUsername());
+	    
+	    userService.remove(user0);
+	}
+	
+	@Test
+	public void findUserByEmail() {
+	    User user0 = Mock.getUser0();
+	    userService.create(user0);
+
+	    User foundUser = userService.findUserByEmail(user0.getEmail());
+
+	    Assert.assertEquals(user0.getEmail(), foundUser.getEmail());
+	    Assert.assertEquals(user0.getUsername(), foundUser.getUsername());
+	    userService.remove(user0);
+	}
+
+	
+
+	
 }
