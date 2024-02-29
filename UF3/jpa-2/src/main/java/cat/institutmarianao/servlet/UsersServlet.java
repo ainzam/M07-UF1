@@ -35,14 +35,38 @@ public class UsersServlet extends HttpServlet {
 	 * @throws ServletException if a servlet-specific error occurs
 	 * @throws IOException      if an I/O error occurs
 	 */
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
 
-		List<User> users = userService.getAllUsers();
+        List<User> users;
 
-		request.setAttribute("users", users);
-		request.getRequestDispatcher("users.jsp").forward(request, response);
-	}
+        if (username != null && !username.isEmpty()) {
+            // Buscar usuarios por nombre de usuario
+            User user = userService.findUserByUsername(username);
+            if (user != null) {
+                users = List.of(user);
+            } else {
+                users = List.of();
+            }
+        } else if (email != null && !email.isEmpty()) {
+            // Buscar usuarios por email
+            User user = userService.findUserByEmail(email);
+            if (user != null) {
+                users = List.of(user);
+            } else {
+                users = List.of();
+            }
+        } else {
+            // Obtener todos los usuarios
+            users = userService.getAllUsers();
+        }
+
+        request.setAttribute("users", users);
+        request.getRequestDispatcher("users.jsp").forward(request, response);
+    }
+
 
 	/**
 	 * Handles the HTTP <code>GET</code> method.
