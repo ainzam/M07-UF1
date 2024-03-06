@@ -13,10 +13,10 @@
 		<h1>Active Users</h1>
         <div class="row">
             <div class="col-md-2">
-                <a href="/jpa-2/AddUserForm.jsp" class="btn btn-success">Add User</a>
+                <a href="/jpa-2/AddUserServlet" class="btn btn-success">Add User</a>
             </div>
             <div class="col-md-5">
-                <form action="/jpa-2/UsersServlet" method="get" class="form-inline">
+                <form action="/jpa-2/UsersServlet" method="post" class="form-inline">
                     <div class="form-group">
                         <label for="searchUsername">Search by Username:</label>
                         <input type="text" class="form-control" id="searchUsername" name="username">
@@ -25,7 +25,7 @@
                 </form>
             </div>
             <div class="col-md-5">
-                <form action="/jpa-2/UsersServlet" method="get" class="form-inline">
+                <form action="/jpa-2/UsersServlet" method="post" class="form-inline">
                     <div class="form-group">
                         <label for="searchEmail">Search by Email:</label>
                         <input type="email" class="form-control" id="searchEmail" name="email">
@@ -36,6 +36,11 @@
         </div>
         <div class="row">
             <div class="col-md-12">
+            	<c:if test="${not empty requestScope.message}">
+				    <div class="alert alert-warning" role="alert">
+				        <c:out value="${requestScope.message}" />
+				    </div>
+				</c:if>
                 <table class="table">
                     <thead>
                         <tr>
@@ -68,7 +73,7 @@
                                                     <p>Are you sure you want to delete user '${user.username}'?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <form action="jpa-2/DeleteUserServlet" method="post">
+                                                    <form action="/jpa-2/DeleteUserServlet" method="post">
                                                         <input type="hidden" name="username" value="${user.username}">
                                                         <button type="submit" class="btn btn-danger">Delete</button>
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
