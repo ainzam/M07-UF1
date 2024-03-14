@@ -12,7 +12,8 @@ public class Order implements Serializable {
 			"order.state.absent", "order.state.pending.collection", "order.state.returned" };
 
 	private static int referenceSequence = 1;
-
+	
+	
 	private Long reference;
 
 	private User client;
