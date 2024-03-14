@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="itemDao" class="org.mockito.Mockito"
+		factory-method="mock">
+		<constructor-arg type="java.lang.Class"
+			value="cat.institutmarianao.repository.ItemDao" />
+	</bean>
+
+	<bean id="orderDao" class="org.mockito.Mockito"
+		factory-method="mock">
+		<constructor-arg type="java.lang.Class"
+			value="cat.institutmarianao.repository.OrderDao" />
+	</bean>
+
+	<bean id="orderItemDao" class="org.mockito.Mockito"
+		factory-method="mock">
+		<constructor-arg type="java.lang.Class"
+			value="cat.institutmarianao.repository.OrderItemDao" />
+	</bean>
+
+	<bean id="userDao" class="org.mockito.Mockito"
+		factory-method="mock">
+		<constructor-arg type="java.lang.Class"
+			value="cat.institutmarianao.repository.UserDao" />
+	</bean>
+
+	<bean id="itemService"
+		class="cat.institutmarianao.service.impl.ItemServiceImpl" />
+
+	<bean id="orderService"
+		class="cat.institutmarianao.service.impl.OrderServiceImpl" />
+
+	<bean id="userService"
+		class="cat.institutmarianao.service.impl.UserServiceImpl" />
+
+	<bean id="transactionManager" class="org.mockito.Mockito"
+		factory-method="mock">
+		<constructor-arg type="java.lang.Class"
+			value="org.springframework.transaction.PlatformTransactionManager" />
+	</bean>
+</beans>
