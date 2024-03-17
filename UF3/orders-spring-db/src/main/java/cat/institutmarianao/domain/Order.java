@@ -4,7 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+
 //TODO Put JPA and Validation annotations
+@Entity
+@Table(name = "orders")
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -13,19 +26,33 @@ public class Order implements Serializable {
 
 	private static int referenceSequence = 1;
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long reference;
 
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private User client;
 
+	@ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "deliveryAddress_id")
 	private Address deliveryAddress;
 
+    @NotNull
+    @Column(name = "startDate")
 	private Date startDate;
+    
+    @Column(name = "deliveryDate")
 	private Date deliveryDate;
 
+    @NotNull
 	private Integer state = 0;
-
+    
+    @NotNull
+    @Column(name = "totalQuantity")
 	private Integer totalQuantity = 0;
+    
+    @NotNull
+    @Column(name = "totalAmount")
 	private Double totalAmount = 0d;
 
 	public static int incReferenceSequence() {

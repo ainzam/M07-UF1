@@ -51,7 +51,7 @@ public class OrderDaoImpl implements OrderDao {
 	    Root<Order> orderRoot = query.from(Order.class);
 
 	    query.select(orderRoot)
-	         .where(criteriaBuilder.equal(orderRoot.get("client_username"), client));
+	         .where(criteriaBuilder.equal(orderRoot.get("client"), client));
 
 	    return session.createQuery(query).getResultList();
 	}

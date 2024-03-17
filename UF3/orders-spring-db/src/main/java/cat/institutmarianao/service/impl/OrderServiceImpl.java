@@ -62,11 +62,11 @@ public class OrderServiceImpl implements OrderService {
 		itemq.setOrder(order);
 		itemq.setItem(item);
 		
-		OrderItem quantity = orderItemDao.get(itemq);
+		OrderItem itemExist = orderItemDao.get(itemq);
+		itemExist.setQuantity( itemExist.getQuantity() + incQuantity );
 		
-		itemq.setQuantity(incQuantity);
+		orderItemDao.update(itemExist);
 		
-		orderItemDao.update(itemq);
 	}
 
 }
