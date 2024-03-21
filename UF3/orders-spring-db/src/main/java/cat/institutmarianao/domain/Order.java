@@ -30,7 +30,6 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long reference;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
 	private User client;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)

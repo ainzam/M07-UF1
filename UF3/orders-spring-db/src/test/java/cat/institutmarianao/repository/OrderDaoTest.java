@@ -1,18 +1,18 @@
 package cat.institutmarianao.repository;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
 import cat.institutmarianao.domain.Order;
 import cat.institutmarianao.domain.User;
@@ -32,7 +32,8 @@ class OrderDaoTest {
         // Setup
         User user = Mock.createUser("testuser");
         Order order = Mock.createOrder(user);
-
+        userDao.save(user);
+        
         // Order does not exist in database
         assertNull(order.getReference());
         assertEquals(0, orderDao.getAll().size());
